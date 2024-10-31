@@ -4,7 +4,6 @@ class WorldWidePage {
         this.countryListSelector = '#country-list-id > ul';
         this.listItemSelector = `${this.countryListSelector} > li`;
 
-        // Define expected URL patterns for each country
         this.countryUrlPatterns = {
             'Belgium': 'https://www.sogeti.be/',
             'Finland': 'https://www.sogeti.fi/',
@@ -20,7 +19,6 @@ class WorldWidePage {
             'USA' :'https://www.us.sogeti.com/',
             'sogeti.com' : 'https://www.sogeti.com/',
 
-            // Add more countries and their expected URL patterns as needed
         };
     }
 
@@ -37,7 +35,7 @@ class WorldWidePage {
         return size;
     }
 
-    async openLinks() {
+    async openCountriesLinks() {
         const items = await this.getListSize();
         console.log("The item count is: " + items);
 
@@ -50,7 +48,7 @@ class WorldWidePage {
                 const expectedPattern = this.countryUrlPatterns[countryName.trim()];
 
                 const [newPage] = await Promise.all([
-                    this.page.waitForEvent('popup'),
+                    this.page.waitForEvent('popup', { timeout: 15000 }),
                     currentItem.click()
                 ]);
 

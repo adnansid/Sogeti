@@ -1,34 +1,32 @@
-
 class HomePage {
-  constructor(page) {
-      this.page = page;
-  }
+    constructor(page) {
+        this.page = page;
+    }
 
-  async navigateToHomePage() {
-      await this.page.goto('https://www.sogeti.com/');
-  }
-  async byPassCookies() {
+    get servicesTab() {
+        return this.page.locator("li.has-children.level2.focus-style")
+    }
 
-      const acceptCookieButton = this.page.locator('.acceptCookie');
-      await acceptCookieButton.first().click();
-  }
+    async navigateToHomePage() {
+        await this.page.goto('/');
+    }
 
-  get openServiceTab() {
-      return this.page.locator("li.has-children.level2.focus-style");
-  }
+    async byPassCookies() {
+        const acceptCookieButton = this.page.locator('.acceptCookie');
+        if (await acceptCookieButton.count() > 0) {
+            await acceptCookieButton.click();
+        } else {
+            console.warn("Accept Cookies button not found.");
+        }
+    }
 
-  get getAutomationLink() {
-      return this.page.getByRole('link', { name: 'Automation' });
-  }
+    async waitUntilPageLoad() {
+        await this.page.waitForLoadState('load');
+    }
 
-  async openProfile() {
-      await this.profileLink.click();
-  }
-
-  async waitUntilPageLoad() {
-      await this.page.waitForLoadState()
-  }
-
+    async clickAutomationLink() {
+        await this.page.locator('a.subMenuLink', { hasText: 'Automation' }).click();
+    }
 }
 
 module.exports = { HomePage };

@@ -1,8 +1,7 @@
-// pageObjectsFixture.js
+
 const { HomePage } = require('../pages/HomePage');
 const { AutomationPage } = require('../pages/services/AutomationPage');
 const { WorldWidePage } = require('../pages/countries/WorldWidePage');
-
 
 
 class PageObjectsFixture {
