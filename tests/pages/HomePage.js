@@ -25,7 +25,7 @@ class HomePage {
     }
 
     async clickAutomationLink() {
-        await this.page.locator('a.subMenuLink', { hasText: 'Automation' }).click();
+        await this.page.locator('a.subMenuLink', { hasText: 'Automation' }).click({timeout: 5000 });
     }
 }
 

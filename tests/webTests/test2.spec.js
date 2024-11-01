@@ -13,12 +13,12 @@ test('Test Case 2: Fill the form data', async ({ page }) => {
     await homePage.navigateToHomePage();
     await homePage.byPassCookies();
 
-    await homePage.openServiceTab.hover();
+    await homePage.servicesTab.hover({timeout: 5000 });
     await homePage.clickAutomationLink();
 
     await automationPage.waitUntilPageLoad();
     await expect(automationPage.page).toHaveURL(/.*services\/automation\/.*/);
 
-    await automationPage.scrollToContactSection();
+  //  await automationPage.scrollToContactSection();
     await automationPage.fillContactData();
 });
